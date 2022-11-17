@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>filter menu </title>
+    <style>
+        .container{
+            display: grid;
+            grid-template-columns: auto auto auto auto;
+            gap: 40px;
+            width: 80vw;
+            margin: auto;
+        }
+.card{
+    width: 200px;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    height: 300px;
+    padding: 20px;
+    cursor: pointer;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+}
+
+.card:hover{
+    transition: all 0.5s ease-in;
+    transform: scale(1.1);
+
+}
+
+.img{
+    width: 200px;
+    height: 100px;
+}
+.img img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.btn_group{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 50px;
+}
+button{
+    margin:0 20px;
+}
+
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center;">Food Menu here </h1>
+    <div class="btn_group">
+        <button onclick="alldata()">all</button>
+        <button onclick="breakfast()">breakfast</button>
+        <button onclick="dinner()">dinner</button>
+        <button onclick="lunch()">lunch</button>
+    </div>
+
+    <div class="container">
+
+    </div>
+</body>
+
+<script>
+
+var data = [
+{
+    food_id:1,
+    food_name:"samosha",
+    food_category:"breakfast",
+    food_img:"img1.webp"
+},
+{
+    food_id:2,
+    food_name:"kaju katli",
+    food_category:"dinner",
+    food_img:"img2.webp"
+},
+{
+    food_id:3,
+    food_name:"burger",
+    food_category:"breakfast",
+    food_img:"img3.webp"
+},
+{
+    food_id:4,
+    food_name:"alloo ke parate",
+    food_category:"breakfast",
+    food_img:"img1.webp"
+},
+{
+    food_id:5,
+    food_name:"rashgulla",
+    food_category:"lunch",
+    food_img:"img2.webp"
+},
+{
+    food_id:6,
+    food_name:"roti sabji",
+    food_img:"img3.webp",
+    food_category:"lunch",
+},
+{
+    food_id:7,
+    food_name:"doreacake",
+    food_category:"breakfast",
+    food_img:"img1.webp"
+},
+{
+    food_id:8,
+    food_name:"rash malai",
+    food_category:"dinner",
+    food_img:"img2.webp"
+},
+{
+    food_id:9,
+    food_name:"rash malai",
+    food_category:"dinner",
+    food_img:"img3.webp"
+}
+];
+
+
+
+
+
+var div = document.querySelector('.container');
+function showmenu (data){
+  var da =  data.map(function(element){
+        return (`<div class="card">
+            <div class="img">
+                <img src="${element.food_img}" >
+                </div>
+                <div class="content">
+                    <h1>${element.food_category}</h1>
+                    <h1>${element.food_name}</h1>
+                    <p>Lorem, ipsum dolor sit  elit. Minima, dolores.</p>
+                    </div>
+                    </div>`);
+
+
+                }).join("");
+                div.innerHTML = da;
+
+            }
+                
+                
+
+
+function breakfast(){
+    var b = data.filter(function(e){
+        return e.food_category == "breakfast";
+    })    
+
+    showmenu(b);
+}
+
+
+function dinner(){
+    var b = data.filter(function(e){
+        return e.food_category == "dinner";
+    })    
+
+    showmenu(b);
+}
+
+
+
+function lunch(){
+    var b = data.filter(function(e){
+        return e.food_category == "lunch";
+    })    
+
+    showmenu(b);
+}
+
+function alldata(){
+    showmenu(data);
+}
+window.addEventListener('DOMContentLoaded', ()=>{
+    alldata();
+})
+</script>
+</html>
